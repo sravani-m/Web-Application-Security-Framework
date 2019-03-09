@@ -28,20 +28,15 @@ class VulnerabilityScanTools:
 		cmd = ["sslyze","--regular",domain]
 		op = self.cmd_rsp(cmd)
 		sslyzer_op = op.split("\n")
-		line_num = 0
-		start = 0
-		end = 0
+		line_num = start = end = 0
 
 		if scan_type=="full":
 			for line in sslyzer_op:
 				if 'SCAN RESULTS' in line:
 					start = line_num
-
 				if 'SCAN COMPLETED' in line:
 					end = line_num
-			
 				line_num = line_num + 1
-
 			sslyzer_op = sslyzer_op[start+2:end]
 		
 		scan_op = "\n".join(sslyzer_op)
@@ -49,6 +44,7 @@ class VulnerabilityScanTools:
 		print("sslyzer")
 		return -1
 	
+	def 
 
 @app.route('/vulnerability_scan_tool/<tools_json>/',methods = ["GET"])
 def pick_tool(tools_json):
