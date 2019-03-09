@@ -43,8 +43,6 @@ class VulnerabilityScanTools:
 		print(scan_op)
 		print("sslyzer")
 		return -1
-	
-	def 
 
 @app.route('/vulnerability_scan_tool/<tools_json>/',methods = ["GET"])
 def pick_tool(tools_json):
