@@ -25,6 +25,7 @@ class VulnerabilityScanTools:
 		return rsp
 
 	def sslyzer_scan(self,domain,scan_type):
+		print("sslyze scan")
 		cmd = ["sslyze","--regular",domain]
 		op = self.cmd_rsp(cmd)
 		sslyzer_op = op.split("\n")
@@ -44,22 +45,31 @@ class VulnerabilityScanTools:
 		print("sslyzer")
 		return -1
 
-@app.route('/vulnerability_scan_tool/<tools_json>/',methods = ["GET"])
-def pick_tool(tools_json):
+	def xsser_scan(self,domain,scan_type):
+		os.chdir("xsser")
+		cmd = ["xsser","-url",domain]
+		op = self.cmd_rsp(cmd)
+		# parse the output for full scan and half scan
+		
+
+#http://localhost:5000/get_scan_results/%7B%22vulnerabilities%22:[%22xss%22,%22sql_injection%22]%7D/
+@app.route('/get_scan_results/<vulnerabilities_json>/',methods = ["GET"])
+def pick_tool(vulnerabilities_json):
 	print("here")
 	status_code = -1
 	status_message = 'Error'
 	return_data = None
 
-	tools_dict = json_encoder.encode({"name":"sslyzer","id":1})
-	tools_dict = json_decoder.decode(tools_dict)
-	tool_id = tools_dict["id"]
-	tool_name = tools_dict["name"] 
-	
-	if tool_name=="sslyzer":
+	print(vulnerabilities_json)
+	vulnerabilities_dict = json_decoder.decode(vulnerabilities_json)
+	vulnerabilities = vulnerabilities_dict["vulnerabilities"]
+
+	if "ssl" in vulnerabilities:
 		ss = VulnerabilityScanTools()
 		ss.sslyzer_scan("www.pes.edu:443","full")
 
+
+	
 	return "success"
 
 
