@@ -54,8 +54,19 @@ class VulnerabilityScanTools:
 		print(op)
 
 		return -1
-		# parse the output for full scan and half scan
 		
+	def nikto_scan(self,domain):
+		print("nikto")
+		os.chdir("../nikto/program")
+		path_config = os.getcwd()+"/nikto.conf.default"
+		cmd = ["perl","nikto.pl","-config",path_config,"-Tuning","9","-host",domain]
+		print(cmd)
+		op = self.cmd_rsp(cmd)
+		print(op)
+
+		return -1
+		# parse the output for full scan and half scan
+#perl nikto.pl -config /home/sravya/Desktop/checking_install/nikto/program/nikto.conf.default -Tuning 9 -host www.isanalytics.com
 
 #http://localhost:5000/get_scan_results/%7B%22vulnerabilities%22:[%22xss%22,%22sql_injection%22]%7D/
 @app.route('/get_scan_results/<vulnerabilities_json>/',methods = ["GET"])
@@ -76,6 +87,9 @@ def pick_tool(vulnerabilities_json):
 	elif "xsser" in vulnerabilities:
 		ss = VulnerabilityScanTools()
 		ss.xsser_scan("https://hack.me/")
+	elif "nikto" in vulnerabilities:
+		ss = VulnerabilityScanTools()
+		ss.nikto_scan("www.isanalytics.com")
 
 
 	
