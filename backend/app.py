@@ -6,6 +6,7 @@ from flask import jsonify
 import subprocess
 import json
 import random
+import os
 
 app = Flask(__name__)
 
@@ -45,10 +46,14 @@ class VulnerabilityScanTools:
 		print("sslyzer")
 		return -1
 
-	def xsser_scan(self,domain,scan_type):
-		os.chdir("xsser")
-		cmd = ["xsser","-url",domain]
+	def xsser_scan(self,domain):
+		os.chdir("../xsser")
+		print("xsser")
+		cmd = ["xsser","-u",domain]
 		op = self.cmd_rsp(cmd)
+		print(op)
+
+		return -1
 		# parse the output for full scan and half scan
 		
 
@@ -61,12 +66,16 @@ def pick_tool(vulnerabilities_json):
 	return_data = None
 
 	print(vulnerabilities_json)
+	vulnerabilities_dict = json_encoder.encode(vulnerabilities_json)	
 	vulnerabilities_dict = json_decoder.decode(vulnerabilities_json)
 	vulnerabilities = vulnerabilities_dict["vulnerabilities"]
 
 	if "ssl" in vulnerabilities:
 		ss = VulnerabilityScanTools()
 		ss.sslyzer_scan("www.pes.edu:443","full")
+	elif "xsser" in vulnerabilities:
+		ss = VulnerabilityScanTools()
+		ss.xsser_scan("https://hack.me/")
 
 
 	
