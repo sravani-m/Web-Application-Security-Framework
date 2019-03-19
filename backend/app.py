@@ -7,6 +7,13 @@ import subprocess
 import json
 import random
 import os
+import pickle
+
+import psutil
+
+from globals import ABSOLUTE_PATH, UPLOAD_FOLDER, ALLOWED_EXTENSIONS, allowed_file, PREPROC, SUPER, UNSUPER, json_decoder, json_encoder, weakdict, str_isfloat
+from usertable_handler import create_new_user_table, user_table_exists
+from notebook_handler import ACTIVE_NOTEBOOKS, create_notebook_global_table, get_notebook_data, notebook_global_table_exist, set_notebook_data
 
 app = Flask(__name__)
 
@@ -67,6 +74,197 @@ class VulnerabilityScanTools:
 		return -1
 		# parse the output for full scan and half scan
 #perl nikto.pl -config /home/sravya/Desktop/checking_install/nikto/program/nikto.conf.default -Tuning 9 -host www.isanalytics.com
+
+#USERNAME INFO
+@app.route("/check_username_exists/<check_username_exists_json>", methods = ["GET"])
+def check_username_exists(check_username_exists_json):
+		check_username_exists_dict = json_decoder.decode(check_username_exists_json)
+
+		print("\n",check_username_exists_dict,"\n")
+		# if new installation, create new user table
+		if not (user_table_exists()):
+			create_new_user_table()
+
+		# check user table is username exists
+		fileObject = open("USERTABLE", "rb")
+		table = pickle.load(fileObject)
+		print("\n",table,"\n")
+		if any(obj['username'] == check_username_exists_dict['username'] for obj in table):
+			print("exists")
+			return json_encoder.encode({"message":"Success", "comment":"Username exists"})
+
+		return json_encoder.encode({"message":"Success", "comment": "Username available"})
+
+
+@app.route("/check_username_and_password_matches", methods = ["POST"])
+def check_username_and_password_matches():
+	try:
+
+		# if new installation, create a new user table
+		if not (user_table_exists()):
+			create_new_user_table()
+
+		# extract from POST request form data wrapped in json
+		username = request.json['username']
+		password = request.json['password']
+
+		# open user table and check if username and password match.
+		fileObject = open("USERTABLE", "rb")
+		table = pickle.load(fileObject)
+
+		if (any(username == obj['username'] and password == obj['password'] for obj in table)):
+			return json_encoder.encode({"message":"Success", "comment":"Username and password match"})
+
+		return json_encoder.encode({"message":"Success", "comment":"Username and password does not match"})
+	except:
+		return json_encoder.encode({"message":"Failure", "comment": "Other error"})
+
+
+
+@app.route("/add_user", methods = ["POST"])
+def add_user():
+	try:
+		user = request.json		
+		print(user)
+
+		# if new installation, create a new user table
+		if not (user_table_exists()):
+			create_new_user_table()
+
+		fileObject = open("USERTABLE", "rb")
+		table = pickle.load(fileObject)
+		fileObject.close()
+
+		# newly created user does not have any notebooks
+		obj = 	{
+					"username": user['username'],
+					"password": user['password'],
+					"created_notebooks": []
+				}
+		
+		table.append(obj)
+
+		# save updated user table
+		fileObject = open("USERTABLE", "wb")
+		pickle.dump(table, fileObject)
+		fileObject.close()
+
+		return json_encoder.encode({"message":"success"})
+	except:
+		return json_encoder.encode({"message":"failure"})
+
+
+
+@app.route("/check_notebook_name_exists/<check_notebook_name_exists_json>", methods = ["GET"])
+def check_notebook_name_exists(check_notebook_name_exists_json):
+	check_notebook_name_exists_dict = json_decoder.decode(check_notebook_name_exists_json)
+
+	# if new installation, create global notebooks table
+	if not (notebook_global_table_exist()):
+		create_notebook_global_table()
+
+	# opens the global notebooks table, and checks whether notebook exists
+	fileObject = open("NOTEBOOKS_DATA", "rb")
+	table = pickle.load(fileObject)
+
+	if any(obj['notebook_name'] == check_notebook_name_exists_dict['notebook_name'] for obj in table):
+		return json_encoder.encode({"message":"Success", "comment":"Notebook name exists"})
+
+	return json_encoder.encode({"message":"Success", "comment": "Notebook name available"})
+
+
+
+@app.route("/get_user_notebooks/<get_user_notebooks_json>", methods = ["GET"])
+def get_user_notebooks(get_user_notebooks_json):
+	get_user_notebooks_dict = json_decoder.decode(get_user_notebooks_json)
+
+	# opens user table and returns list of notebooks opened by that user
+	table = pickle.load(open("USERTABLE", "rb"))
+
+	for obj in table:
+		if (obj['username'] == get_user_notebooks_dict['username']):
+			return json_encoder.encode({"message":"Success", "notebook_names":obj['shared_notebooks'] + obj['created_notebooks']})
+
+	return json_encoder.encode({"message":"Failure"})
+
+
+
+@app.route("/add_notebook", methods = ["POST"])
+def add_notebook():
+	print("changed")
+	try:
+		# notebook is of type weakdict to create references of it
+		notebook = dict(request.json)
+		print("\n",notebook,"\n")
+		# creating a reference of notebook's data
+		# weakdict_notebook = weakref.proxy(notebook)
+
+		fileObject = open("NOTEBOOK_"+notebook['notebook_name'], "wb")
+		pickle.dump(notebook, fileObject)
+		fileObject.close()
+
+		# if new installation, create a global notebooks table
+		if not (notebook_global_table_exist()):
+			create_notebook_global_table()
+
+		# open global notebooks table and add notebook configuration
+		fileObject = open("NOTEBOOKS_DATA", "rb")
+		table = pickle.load(fileObject)
+		fileObject.close()
+		table.append({
+						"notebook_name": notebook['notebook_name'],
+						"CPU_count": int(notebook['CPU_count']),
+					})
+
+		fileObject = open("NOTEBOOKS_DATA", "wb")
+		pickle.dump(table, fileObject)
+		fileObject.close()
+
+		# open global user table and add this notebook to user's list of created notebooks
+		table = pickle.load(open("USERTABLE", "rb"))
+		for obj in table:
+			if obj['username'] == notebook['username']:
+				obj['created_notebooks'].append(notebook['notebook_name'])
+
+		pickle.dump(table, open("USERTABLE", "wb"))
+
+		return json_encoder.encode({"message":"Success", "comment": "Notebook created"})
+	except:
+		return json_encoder.encode({"message":"Failure", "comment": "Other error"})
+
+
+
+@app.route("/get_devices/", methods = ["GET"])
+def get_devices():
+	# Currently works only on Linux
+	# Fails on windows.
+	# Check for unix
+	if(os.name == 'posix'):
+		n_cpu = psutil.cpu_count()
+
+	# if new installation, create a global notebooks table
+	if not (notebook_global_table_exist()):
+		create_notebook_global_table()
+
+	table = pickle.load(open("NOTEBOOKS_DATA", "rb"))
+	a_cpu = n_cpu - sum(obj["CPU_count"] for obj in table)
+
+	return json_encoder.encode({"message":"Success", "CPU_available": a_cpu})
+
+
+
+@app.route("/load_existing_notebook", methods = ["POST"])
+def load_existing_notebook():
+	# Send data to UI to load back existing notebook
+	data = request.json
+	notebook = get_notebook_data(data['notebook_name'])
+	dct = {}
+	for key in notebook:
+		dct[key] = notebook[key]
+
+	return json_encoder.encode({"message": "Success", "notebook_data": dct})
+
+
 
 #http://localhost:5000/get_scan_results/%7B%22vulnerabilities%22:[%22xss%22,%22sql_injection%22]%7D/
 @app.route('/get_scan_results/<vulnerabilities_json>/',methods = ["GET"])
