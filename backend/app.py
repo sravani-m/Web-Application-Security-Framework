@@ -54,8 +54,8 @@ class VulnerabilityScanTools:
 		return scan_op
 
 	def xsser_scan(self,domain):
-		os.chdir("../xsser")
-		print("xsser")
+		os.chdir("../tools/xsser")
+		print(os.getcwd())
 		cmd = ["xsser","-u",domain]
 		op = self.cmd_rsp(cmd)
 		print(op)
@@ -64,7 +64,7 @@ class VulnerabilityScanTools:
 		
 	def nikto_scan(self,domain):
 		print("nikto")
-		os.chdir("../nikto/program")
+		os.chdir("../tools/nikto/program")
 		path_config = os.getcwd()+"/nikto.conf.default"
 		cmd = ["perl","nikto.pl","-config",path_config,"-Tuning","9","-host",domain]
 		print(cmd)
@@ -268,20 +268,28 @@ def load_existing_notebook_details(notebook_details):
 
 
 #http://localhost:5000/get_scan_results/%7B%22vulnerabilities%22:[%22xss%22,%22sql_injection%22]%7D/
-@app.route('/get_scan_results/<vulnerabilities_json>/',methods = ["GET"])
-def pick_tool(vulnerabilities_json):
+@app.route('/get_scan_results/<vulnerabilities_json>/<path:url>',methods = ["GET"])
+def pick_tool(vulnerabilities_json,url):
 	print("here")
 	status_code = -1
 	status_message = 'Error'
 	return_data = ""
-
 	print(vulnerabilities_json)
 	vulnerabilities_dict = json_encoder.encode(vulnerabilities_json)	
 	vulnerabilities_dict = json_decoder.decode(vulnerabilities_json)
 	vulnerabilities = vulnerabilities_dict["vulnerabilities"]
+	url = url.strip('\"')
+	#url = 'https://github.com/sravani-m/Web-Application-Security-Framework/blob/master/backend/app.py'
 
 	print("\n "+vulnerabilities_dict["url"]+"\n")
 	if "ssl" in vulnerabilities:
+		url = url.split('//')
+		if url[0]=='https:' or url[0]=='http:' :
+			url.pop(0)
+		url_modified = ''.join(map(str,url))
+		url_modified = url_modified.split('/')
+		url_modified_stripped = url_modified[0]
+		print(url_modified_stripped)
 		ss = VulnerabilityScanTools()
 		return_data+=ss.sslyzer_scan("www.pes.edu:443","full")
 	elif "xsser" in vulnerabilities:
@@ -308,10 +316,3 @@ def pick_tool(vulnerabilities_json):
 
 	print("return data",return_data)
 	return json_encoder.encode({"message":"Success","report":return_data})
-
-
-
-	
-	
-
-	
