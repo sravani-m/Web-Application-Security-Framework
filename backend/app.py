@@ -51,7 +51,7 @@ class VulnerabilityScanTools:
 		scan_op = "\n".join(sslyzer_op)
 		print(scan_op)
 		print("sslyzer")
-		return -1
+		return scan_op
 
 	def xsser_scan(self,domain):
 		os.chdir("../xsser")
@@ -60,7 +60,7 @@ class VulnerabilityScanTools:
 		op = self.cmd_rsp(cmd)
 		print(op)
 
-		return -1
+		return op
 		
 	def nikto_scan(self,domain):
 		print("nikto")
@@ -253,10 +253,11 @@ def get_devices():
 
 
 
-@app.route("/load_existing_notebook", methods = ["POST"])
-def load_existing_notebook():
+@app.route("/load_existing_notebook/<notebook_details>/", methods = ["GET"])
+def load_existing_notebook_details(notebook_details):
 	# Send data to UI to load back existing notebook
-	data = request.json
+	print(notebook_details)
+	data = json_decoder.decode(notebook_details)
 	notebook = get_notebook_data(data['notebook_name'])
 	dct = {}
 	for key in notebook:
@@ -272,26 +273,41 @@ def pick_tool(vulnerabilities_json):
 	print("here")
 	status_code = -1
 	status_message = 'Error'
-	return_data = None
+	return_data = ""
 
 	print(vulnerabilities_json)
 	vulnerabilities_dict = json_encoder.encode(vulnerabilities_json)	
 	vulnerabilities_dict = json_decoder.decode(vulnerabilities_json)
 	vulnerabilities = vulnerabilities_dict["vulnerabilities"]
 
+	print("\n "+vulnerabilities_dict["url"]+"\n")
 	if "ssl" in vulnerabilities:
 		ss = VulnerabilityScanTools()
-		ss.sslyzer_scan("www.pes.edu:443","full")
+		return_data+=ss.sslyzer_scan("www.pes.edu:443","full")
 	elif "xsser" in vulnerabilities:
 		ss = VulnerabilityScanTools()
-		ss.xsser_scan("https://hack.me/")
+		return_data+=ss.xsser_scan("https://hack.me/")
 	elif "nikto" in vulnerabilities:
 		ss = VulnerabilityScanTools()
-		ss.nikto_scan("www.isanalytics.com")
-
-
+		return_data+=ss.nikto_scan("www.isanalytics.com")
 	
-	return "success"
+	print("Notebook name",vulnerabilities_dict["notebook_name"]);
+	#setting notebook data
+	fileObject = open("NOTEBOOK_"+vulnerabilities_dict["notebook_name"], "rb")
+	table = pickle.load(fileObject)
+	print(type(table))
+	fileObject.close()
+	
+	table["url"] = vulnerabilities_dict["url"]
+	table["vulnerabilities"] = vulnerabilities_dict["vulnerabilities"]
+	table["report"] = return_data
+	
+	fileObject = open("NOTEBOOK_"+vulnerabilities_dict["notebook_name"], "wb")
+	pickle.dump(table, fileObject)
+	fileObject.close()
+
+	print("return data",return_data)
+	return json_encoder.encode({"message":"Success","report":return_data})
 
 
 
