@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
 
   state : {
-      loggedUser : null,
+      loggedUser : "admin",
       nonNeuralModelSelected: "LinearSVC",
       currentNotebook: null,
       report: "No report available.",

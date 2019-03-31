@@ -175,6 +175,7 @@ export default {
       // Gets exisiting notebooks for the particular user 
       getNotebooks(){
         let usernameObj = {username:this.$store.state.loggedUser}
+        console.log("get notebook",usernameObj)
 
         this.$http.get('http://localhost:5000/get_user_notebooks/'+JSON.stringify(usernameObj)).then((response) => {
 

@@ -181,9 +181,12 @@ def get_user_notebooks(get_user_notebooks_json):
 	# opens user table and returns list of notebooks opened by that user
 	table = pickle.load(open("USERTABLE", "rb"))
 
+	print("table",table,get_user_notebooks_dict)
+
 	for obj in table:
 		if (obj['username'] == get_user_notebooks_dict['username']):
-			return json_encoder.encode({"message":"Success", "notebook_names":obj['shared_notebooks'] + obj['created_notebooks']})
+			print("username match")
+			return json_encoder.encode({"message":"Success", "notebook_names":obj['notebooks']})
 
 	return json_encoder.encode({"message":"Failure"})
 
@@ -220,13 +223,19 @@ def add_notebook():
 		pickle.dump(table, fileObject)
 		fileObject.close()
 
-		# open global user table and add this notebook to user's list of created notebooks
-		table = pickle.load(open("USERTABLE", "rb"))
-		for obj in table:
-			if obj['username'] == notebook['username']:
-				obj['created_notebooks'].append(notebook['notebook_name'])
+		
 
-		pickle.dump(table, open("USERTABLE", "wb"))
+		fileObject = open("USERTABLE", "rb")
+		table = pickle.load(fileObject)
+		fileObject.close()
+
+		for obj in table:
+			if obj['username']==notebook["username"]:
+				obj['notebooks'].append(notebook["notebook_name"])
+
+		fileObject = open("USERTABLE","wb")
+		pickle.dump(table, fileObject)
+		fileObject.close()
 
 		return json_encoder.encode({"message":"Success", "comment": "Notebook created"})
 	except:
@@ -267,21 +276,24 @@ def load_existing_notebook_details(notebook_details):
 
 
 
-#http://localhost:5000/get_scan_results/%7B%22vulnerabilities%22:[%22xss%22,%22sql_injection%22]%7D/
-@app.route('/get_scan_results/<vulnerabilities_json>/<path:url>',methods = ["GET"])
-def pick_tool(vulnerabilities_json,url):
+@app.route('/get_scan_results/<vulnerabilities_json>/',methods = ["GET"])
+def pick_tool(vulnerabilities_json):
 	print("here")
 	status_code = -1
 	status_message = 'Error'
 	return_data = ""
 	print(vulnerabilities_json)
-	vulnerabilities_dict = json_encoder.encode(vulnerabilities_json)	
+	# vulnerabilities_dict = json_encoder.encode(vulnerabilities_json)	
 	vulnerabilities_dict = json_decoder.decode(vulnerabilities_json)
 	vulnerabilities = vulnerabilities_dict["vulnerabilities"]
-	url = url.strip('\"')
-	#url = 'https://github.com/sravani-m/Web-Application-Security-Framework/blob/master/backend/app.py'
 
+	username = vulnerabilities_dict["username"]
+	print("\nusername: "+username+"\n")
+	
+	url = vulnerabilities_dict["url"]
+	url = url.strip('\"')
 	print("\n "+vulnerabilities_dict["url"]+"\n")
+	
 	if "ssl" in vulnerabilities:
 		url = url.split('//')
 		if url[0]=='https:' or url[0]=='http:' :

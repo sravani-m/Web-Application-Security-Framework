@@ -73,6 +73,7 @@
       loadNotebookStatus: false,
       inputUrl: "",
       vulnerabilitiesSelected: [],
+      username: this.$store.state.loggedUser,
       }
       
     },
@@ -105,7 +106,9 @@
       startWebsiteScan(){
           console.log(this.inputUrl)
           console.log("Starting website scan",this.vulnerabilitiesSelected)
-          let req_json = {"vulnerabilities":this.vulnerabilitiesSelected,"url":this.inputUrl,"notebook_name":this.$route.params.notebook_name};
+          let req_json = {"vulnerabilities":this.vulnerabilitiesSelected,"url":this.inputUrl,"notebook_name":this.$route.params.notebook_name, "username": this.username };
+
+          console.log(req_json)
 
 
           this.$http.get('http://localhost:5000/get_scan_results/'+JSON.stringify(req_json)).then((response) => {

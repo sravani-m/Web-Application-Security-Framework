@@ -24,30 +24,12 @@ ACTIVE_NOTEBOOKS = {}
 
 def get_notebook_data(notebook_name):
 
-	# if notebook has not been loaded yet
-	if notebook_name not in ACTIVE_NOTEBOOKS:
-
-		# load as append binary and reading
-		fileObject = open("NOTEBOOK_" + notebook_name, "ab+")
-		
-		# pickle needs the file pointer to point to starting of the file
-		fileObject.seek(0)
-
-		notebook = pickle.load(fileObject)
-
-		# create a reference of the notebook in ACTIVE_NOTEBOOKS
-		proxy_notebook = weakref.proxy(notebook)
-
-		# add data required to the ACTIVE_NOTEBOOKS
-		ACTIVE_NOTEBOOKS[notebook_name] = {'data':notebook, 'file':fileObject}
-		
-		return proxy_notebook
-	
-	# if already present and open
-	else:
-
-		# return just the reference to the data
-		return weakref.proxy(ACTIVE_NOTEBOOKS[notebook_name]['data'])
+	# load as append binary and reading
+	fileObject = open("NOTEBOOK_" + notebook_name, "ab+")
+	fileObject.seek(0)
+	notebook = pickle.load(fileObject)
+	print(notebook)
+	return notebook
 
 
 # Takes the notebook name and dump everything to the notebook file
