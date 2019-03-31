@@ -4,3 +4,4 @@ sslyze==1.4.3
 requests==2.21.0
 pycurl
 BeautifulSoup
+psutil
