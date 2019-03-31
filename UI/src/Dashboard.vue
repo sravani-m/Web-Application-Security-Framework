@@ -99,8 +99,8 @@ export default {
     data: function(){
       return {
         imgSRC : require("./assets/company-logo.png"),
-        minCPUs: 0,
-        maxCPUs: 0,
+        minCPUs: 1,
+        maxCPUs: 1,
         minGPUs: 0,
         maxGPUs: 0,
         userNotebooks: [
@@ -109,7 +109,7 @@ export default {
           username: this.$store.state.loggedUser,
           notebook_name: '',
           GPU_count: 0,
-          CPU_count: 0
+          CPU_count: 1
         }
       }
     },
@@ -133,6 +133,9 @@ export default {
                 
                 // To open in another tab
                 // Redirects to '/notebook/<notebook-name>' and invokes Notebook.vue
+                console.log("notebook name",this.notebookInfo.notebook_name)
+
+                this.$store.state.currentNotebook = this.notebookInfo.notebook_name
 
                 let route = this.$router.resolve({path: '/notebook/'+this.notebookInfo.notebook_name+'/'});
                 window.open(route.href, '_blank');
@@ -164,7 +167,7 @@ export default {
           
           console.log("Exisitng devices:",response.data);
 
-          this.maxCPUs = response.data.CPU_available;
+          this.maxCPUs = 1;
           this.maxGPUs = response.data.GPU_available;
 
         })
