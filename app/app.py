@@ -80,7 +80,7 @@ class VulnerabilityScanTools:
 def show_ui():
 	return render_template("index.html")
 
-#USERNAME INFO
+
 @app.route("/check_username_exists/<check_username_exists_json>", methods = ["GET"])
 def check_username_exists(check_username_exists_json):
 		check_username_exists_dict = json_decoder.decode(check_username_exists_json)
@@ -317,6 +317,7 @@ def pick_tool(vulnerabilities_json):
 		return_data+=ss.nikto_scan("www.isanalytics.com")
 	
 	print("Notebook name",vulnerabilities_dict["notebook_name"]);
+
 	#setting notebook data
 	fileObject = open("NOTEBOOK_"+vulnerabilities_dict["notebook_name"], "rb")
 	table = pickle.load(fileObject)
@@ -333,3 +334,6 @@ def pick_tool(vulnerabilities_json):
 
 	print("return data",return_data)
 	return json_encoder.encode({"message":"Success","report":return_data})
+
+if __name__ == "__main__":
+	app.run(debug=True, host='0.0.0.0')
