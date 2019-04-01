@@ -26,7 +26,7 @@
 
         <br>
         <br>
-        <br>
+        <br>login
         <div v-for="notebook in userNotebooks" class="notebookInfo">
             <a @click="openSavedNotebook(notebook.notebook_name)">{{notebook.notebook_name}}  </a>
         </div>
@@ -137,9 +137,11 @@ export default {
 
                 this.$store.state.currentNotebook = this.notebookInfo.notebook_name
 
-                let route = this.$router.resolve({path: '/notebook/'+this.notebookInfo.notebook_name+'/'});
-                window.open(route.href, '_blank');
+                // let route = this.$router.resolve({path: '/notebook/'+this.notebookInfo.notebook_name+'/'});
+                // window.open(route.href, '_blank');
                 
+                this.$router.push('/notebook/'+this.notebookInfo.notebook_name+'/');
+
                 this.notebookInfo["notebook_name"] = ''
                 this.notebookInfo["GPU_count"] = 0
                 this.notebookInfo["CPU_count"] = 0
@@ -152,8 +154,11 @@ export default {
       // Opens saved notebooks
       openSavedNotebook(notebook_name){
         console.log("Open saved Notebook: "+notebook_name)
-        let route = this.$router.resolve({path: '/notebook/'+notebook_name+'/'});
-        window.open(route.href, '_blank');
+        this.$router.push('/notebook/'+notebook_name+'/');
+
+
+        // let route = this.$router.resolve({path: '/notebook/'+notebook_name+'/'});
+        // window.open(route.href, '_blank');
       },
       // Logouts user
       logOutUser(){
