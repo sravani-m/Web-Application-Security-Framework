@@ -75,6 +75,10 @@ class VulnerabilityScanTools:
 		# parse the output for full scan and half scan
 #perl nikto.pl -config /home/sravya/Desktop/checking_install/nikto/program/nikto.conf.default -Tuning 9 -host www.isanalytics.com
 
+@app.route("/",methods = ["GET"])
+def show_ui():
+	return "hello"
+
 #USERNAME INFO
 @app.route("/check_username_exists/<check_username_exists_json>", methods = ["GET"])
 def check_username_exists(check_username_exists_json):
