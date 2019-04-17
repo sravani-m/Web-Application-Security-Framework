@@ -17,11 +17,8 @@ import Register from './components/Register.vue'
 import Dashboard from './Dashboard.vue'
 import Notebook from './components/Notebook.vue'
 
-import UploadData from './components/UploadData.vue'
-import BuildModel from './components/BuildModel.vue'
-import TrainModel from './components/TrainModel.vue'
+import ChooseVulnerabilities from './components/ChooseVulnerabilities.vue'
 import Results from './components/Results.vue'
-import InvestigateModel from './components/InvestigateModel.vue'
 
 // VueX store
 import {store} from './store/store';
@@ -45,12 +42,9 @@ const router = new VueRouter({
   {path:'/dashboard',component: Dashboard},
   {path:'/notebook/:notebook_name',component: Notebook,
 children: [
-  {path:'',redirect:'upload-data'},
-  {path:'upload-data',component: UploadData},
-  {path:'build-model',component:BuildModel},
-  {path:'train-model',component: TrainModel},
+  {path:'',redirect:'choose-vulnerabilities'},
+  {path:'choose-vulnerabilities',component: ChooseVulnerabilities},
   {path:'results',component: Results},
-  {path:'investigate-model',component: InvestigateModel}
         ]
         },
 ],

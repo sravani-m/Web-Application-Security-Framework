@@ -28,11 +28,8 @@
 
     <!-- Top navbar -->
       <b-nav fill tabs class="bg-light font-weight-bold" style="font-family: 'Roboto', sans-serif;">
-        <b-nav-item :to="{path:'/notebook/'+notebook_name+'/upload-data'}">SELECT TOOLS</b-nav-item>
+        <b-nav-item :to="{path:'/notebook/'+notebook_name+'/choose-vulnerabilities'}">SELECT TOOLS</b-nav-item>
         <b-nav-item :to="{path:'/notebook/'+notebook_name+'/results'}" >SCAN REPORT</b-nav-item>
-        <!-- <b-nav-item :to="{path:'/notebook/'+notebook_name+'/train-model'}">TRAIN </b-nav-item>
-        <b-nav-item :to="{path:'/notebook/'+notebook_name+'/results'}">RESULTS</b-nav-item> -->
-        <!-- <b-nav-item :to="{path:'/notebook/'+notebook_name+'/investigate-model'}">INVESTIGATE MODEL</b-nav-item> -->
       </b-nav>
       <br>
 
