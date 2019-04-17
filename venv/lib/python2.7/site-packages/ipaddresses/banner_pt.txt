@@ -1,0 +1,3 @@
+ipaddresses não tem QUALQUER GARANTIA.
+É software livre e você está autorizado a redistribui-lo dentro de certas condições.
+Escreva 'ipaddresses -l' para detalhes.

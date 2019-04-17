@@ -1,0 +1,212 @@
+[3;J[H[2J[?25l
+                                  __         __
+                                 /__)_   ●_/(  _ _
+                                / ( (//)/(/__)( (//)
+                                     /
+                     (The Multi-Tool Web Vulnerability Scanner)
+                            
+
+[100m[ Checking Available Security Scanning Tools Phase... Initiated. ]
+	wapiti...unavailable.
+[F[K	whatweb...available.
+[F[K	nmap...available.
+[F[K	golismero...unavailable.
+[F[K	host...available.
+[F[K	wget...available.
+[F[K	uniscan...unavailable.
+[F[K	wafw00f...unavailable.
+[F[K	dirb...unavailable.
+[F[K	davtest...unavailable.
+[F[K	theharvester...unavailable.
+[F[K	xsser...available.
+[F[K	dnsrecon...unavailable.
+[F[K	fierce...unavailable.
+[F[K	dnswalk...unavailable.
+[F[K	whois...unavailable.
+[F[K	sslyze...available.
+[F[K	lbd...unavailable.
+[F[K	golismero...unavailable.
+[F[K	dnsenum...unavailable.
+[F[K	dmitry...unavailable.
+[F[K	davtest...unavailable.
+[F[K	nikto...unavailable.
+[F[K	dnsmap...unavailable.
+[F[K	Some of these tools ['dnsrecon', 'wapiti', 'dnsenum', 'golismero', 'dirb', 'wafw00f', 'dnsmap', 'lbd', 'dnswalk', 'fierce', 'theharvester', 'davtest', 'dmitry', 'nikto', 'uniscan', 'whois'] are unavailable. RapidScan can still perform tests by excluding these tools from the tests. Please install these tools to fully utilize the functionality of RapidScan.
+[ Checking Available Security Scanning Tools Phase... Completed. ]
+
+
+[100m[ Preliminary Scan Phase Initiated... Loaded 64 vulnerability checks.  ]
+[● < 30s] Deploying 1/64 | Golismero Nikto Scans - Uses Nikto Plugin to detect vulnerabilities. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 25s] Deploying 2/64 | Golismero Zone Transfer - Attempts Zone Transfer. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 30s] Deploying 3/64 | WordPress Checker - Checks for WordPress Installation. |/\|/\|/\|/\|/\|/\|/\|/...Completed in 2s
+
+[F[K[● < 35s] Deploying 4/64 | Checks for ASP.net Elmah Logger \...Completed in 1s
+
+[F[KVulnerability Threat Level
+	 low  CGI Directories Enumerated.
+Vulnerability Definition
+	Attackers may find considerable amount of information from these directories. There are even chances attackers may get access to critical information from these directories.
+Vulnerability Remediation
+	It is recommended to block or restrict access to these directories unless necessary.
+[● < 30s] Deploying 5/64 | Joomla Checker - Checks for Joomla Installation. |/\|/\|/\|/\|/\|/\|/...Completed in 2s
+
+[F[K[● < 25s] Deploying 6/64 | WHOis - Checks for Administrator's Contact Information. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 35s] Deploying 7/64 | Nmap - Checks for Remote Desktop Service over UDP \...Completed in 1s
+
+[F[KVulnerability Threat Level
+	 medium  Some issues found on the Webserver.
+Vulnerability Definition
+	Particular Scanner found multiple vulnerabilities that an attacker may try to exploit the target.
+Vulnerability Remediation
+	Refer to RS-Vulnerability-Report to view the complete information of the vulnerability, once the scan gets completed.
+[● <  3m] Deploying 8/64 | The Harvester - Scans for emails using Google's passive search. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 40s] Deploying 9/64 | Uniscan - Checks for robots.txt & sitemap.xml ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 30s] Deploying 10/64 | Golismero - Checks only for Heartbleed Vulnerability. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 35s] Deploying 11/64 | Nmap - Checks for MS-SQL Server DB |...Completed in 1s
+
+[F[KVulnerability Threat Level
+	 medium  HTTP PUT DEL Methods Enabled.
+Vulnerability Definition
+	There are chances for an attacker to manipulate files on the webserver.
+Vulnerability Remediation
+	It is recommended to disable the HTTP PUT and DEL methods incase if you don't use any REST API Services. Following resources helps you how to disable these methods. http://www.techstacks.com/howto/disable-http-methods-in-tomcat.html https://docs.oracle.com/cd/E19857-01/820-5627/gghwc/index.html https://developer.ibm.com/answers/questions/321629/how-to-disable-http-methods-head-put-delete-option/
+[● < 35s] Deploying 12/64 | Nmap - Checks for Remote Desktop Service over TCP /...Completed in 1s
+
+[F[KVulnerability Threat Level
+	 high  Webserver is Outdated.
+Vulnerability Definition
+	Any outdated web server may contain multiple vulnerabilities as their support would've been ended. An attacker may make use of such an opportunity to leverage attacks.
+Vulnerability Remediation
+	It is highly recommended to upgrade the web server to the available latest version.
+[● <  9m] Deploying 13/64 | Nikto - Checks if Server is Outdated. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 45s] Deploying 14/64 | Wafw00f - Checks for Application Firewalls. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 35s] Deploying 15/64 | DirB - Brutes the target for Open Directories. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 15s] Deploying 16/64 | Nikto - Checks the Domain Headers. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 45m] Deploying 17/64 | LBD - Checks for DNS/HTTP Load Balancers. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 40s] Deploying 18/64 | DMitry - Passively Harvests Subdomains from the Domain. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 40s] Deploying 19/64 | Fierce Subdomains Bruter - Brute Forces Subdomain Discovery. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 15s] Deploying 20/64 | Nikto - Brutes Subdomains. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 35s] Deploying 21/64 | Nmap - Checks for MySQL DB \ ...Completed in 1s
+
+[F[KVulnerability Threat Level
+	 medium  Some vulnerable headers exposed.
+Vulnerability Definition
+	Attackers try to learn more about the target from the amount of information exposed in the headers. An attacker may know what type of tech stack a web application is emphasizing and many other information.
+Vulnerability Remediation
+	Banner Grabbing should be restricted and access to the services from outside would should be made minimum.
+[● < 35s] Deploying 22/64 | Golismero - BruteForces for certain directories on the Domain. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 40s] Deploying 23/64 | Golismero - Checks if the domain is spoofed or hijacked. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 25s] Deploying 24/64 | XSSer - Checks for Cross-Site Scripting [XSS] Attacks. |/\|/\|/\|/\|/...Completed in 1s
+
+[F[K[● < 35s] Deploying 25/64 | Nmap - Performs a Full TCP Port Scan \...Completed in 1s
+
+[F[KVulnerability Threat Level
+	 low  Some issues found with HTTP Options.
+Vulnerability Definition
+	There are chances for an attacker to manipulate files on the webserver.
+Vulnerability Remediation
+	It is recommended to disable the HTTP PUT and DEL methods incase if you don't use any REST API Services. Following resources helps you how to disable these methods. http://www.techstacks.com/howto/disable-http-methods-in-tomcat.html https://docs.oracle.com/cd/E19857-01/820-5627/gghwc/index.html https://developer.ibm.com/answers/questions/321629/how-to-disable-http-methods-head-put-delete-option/
+[● <  4m] Deploying 26/64 | Golismero Subdomains Bruter - Brute Forces Subdomain Discovery. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 30m] Deploying 27/64 | Uniscan - Brutes Directories on the Domain. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 35s] Deploying 28/64 | WhatWeb - Checks for X-XSS Protection Header |...Completed in 1s
+
+[F[KVulnerability Threat Level
+	 medium  Interesting Files Detected.
+Vulnerability Definition
+	Attackers may find considerable amount of information from these files. There are even chances attackers may get access to critical information from these files.
+Vulnerability Remediation
+	It is recommended to block or restrict access to these files unless necessary.
+[● <  4m] Deploying 29/64 | Uniscan - Brutes for Filenames on the Domain. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● <  5m] Deploying 30/64 | Nikto - Checks for Server Issues. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 45s] Deploying 31/64 | WebDAV - Checks if WEBDAV enabled on Home directory. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 45s] Deploying 32/64 | Nmap [TELNET] - Checks if TELNET service is running. /...Completed in 1s
+
+[F[KVulnerability Threat Level
+	 low  DB Banner retrieved with SQLMap.
+Vulnerability Definition
+	May not be SQLi vulnerable. An attacker will be able to know that the host is using a backend for operation.
+Vulnerability Remediation
+	Banner Grabbing should be restricted and access to the services from outside would should be made minimum.
+[● < 45s] Deploying 33/64 | DNSEnum - Attempts Zone Transfer. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● <  9m] Deploying 34/64 | Nikto - Enumerates CGI Directories. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● <  2m] Deploying 35/64 | Nikto - Checks for MS10-070 Vulnerability. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 35s] Deploying 36/64 | Nmap - Checks for ORACLE DB \...Completed in 1s
+
+[F[KVulnerability Threat Level
+	 high  Webserver vulnerable to MS10-070.
+Vulnerability Definition
+	An attacker who successfully exploited this vulnerability could read data, such as the view state, which was encrypted by the server. This vulnerability can also be used for data tampering, which, if successfully exploited, could be used to decrypt and tamper with the data encrypted by the server.
+Vulnerability Remediation
+	Microsoft has released a set of patches on their website to mitigate this issue. The information required to fix this vulnerability can be inferred from this resource. https://docs.microsoft.com/en-us/security-updates/securitybulletins/2010/ms10-070
+[● <  2m] Deploying 37/64 | Nmap - Fast Scan [Only Few Port Checks] |/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/\|/...Completed in 10s
+
+[F[KVulnerability Threat Level
+	 low  Some ports are open. Perform a full-scan manually.
+Vulnerability Definition
+	Open Ports give attackers a hint to exploit the services. Attackers try to retrieve banner information through the ports and understand what type of service the host is running
+Vulnerability Remediation
+	It is recommended to close the ports of unused services and use a firewall to filter the ports wherever necessary. This resource may give more insights. https://security.stackexchange.com/a/145781/6137
+[● < 30s] Deploying 38/64 | Fierce - Attempts Zone Transfer [No Brute Forcing] ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 30s] Deploying 39/64 | Golismero SSL Scans - Performs SSL related Scans. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 35s] Deploying 40/64 | Nikto - Performs SSL Checks. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 35s] Deploying 41/64 | DNSWalk - Attempts Zone Transfer. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 30s] Deploying 42/64 | Drupal Checker - Checks for Drupal Installation. \|/\|/\|/\|/\|/\|/\|...Completed in 2s
+
+[F[K[● < 45s] Deploying 43/64 | DMitry - Passively Harvests Emails from the Domain. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 35s] Deploying 44/64 | Nikto - Checks for Apache Expect XSS Header. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 20s] Deploying 45/64 | Nikto - Checks for Internal IP Leak. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 35s] Deploying 46/64 | Golismero - BruteForces for certain files on the Domain. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 20s] Deploying 47/64 | Nmap [XSS Filter Check] - Checks if XSS Protection Header is present. /\|/\|/\|...Completed in 1s
+
+[F[K[● < 30s] Deploying 48/64 | Golismero - SQLMap [Retrieves only the DB Banner] ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 35m] Deploying 49/64 | Nmap [FTP] - Checks if FTP service is running. /...Completed in 1s
+
+[F[KVulnerability Threat Level
+	 medium  Open Directories Found with DirB.
+Vulnerability Definition
+	Attackers may find considerable amount of information from these directories. There are even chances attackers may get access to critical information from these directories.
+Vulnerability Remediation
+	It is recommended to block or restrict access to these directories unless necessary.
+[● < 35s] Deploying 50/64 | Nikto - Checks for any interesting files on the Domain. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 20s] Deploying 51/64 | DNSRecon - Attempts Multiple Zone Transfers on Nameservers. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 30s] Deploying 52/64 | Golismero - Does a fingerprint on the Domain. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 15s] Deploying 53/64 | Host - Checks for existence of IPV6 address. \|/\|...Completed in 1s
+
+[F[KVulnerability Threat Level
+	 info  Does not have an IPv6 Address. It is good to have one.
+Vulnerability Definition
+	Not a vulnerability, just an informational alert. The host does not have IPv6 support. IPv6 provides more security as IPSec (responsible for CIA - Confidentiality, Integrity and Availablity) is incorporated into this model. So it is good to have IPv6 Support.
+Vulnerability Remediation
+	It is recommended to implement IPv6. More information on how to implement IPv6 can be found from this resource. https://www.cisco.com/c/en/us/solutions/collateral/enterprise/cisco-on-cisco/IPv6-Implementation_CS.html
+[● < 15s] Deploying 54/64 | Nikto - Checks for Shellshock Bug. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 30s] Deploying 55/64 | Uniscan - Checks for XSS, SQLi, BSQLi & Other Checks. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 45s] Deploying 56/64 | Uniscan - Stress Tests the Domain. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 35s] Deploying 57/64 | DNSMap - Brutes Subdomains. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 35s] Deploying 58/64 | Nikto - Checks for Injectable Paths. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 30s] Deploying 59/64 | Nikto - Checks for HTTP PUT DEL. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● <  4m] Deploying 60/64 | Nmap [STUXNET] - Checks if the host is affected by STUXNET Worm. /\|/\...Completed in 1s
+
+[F[KVulnerability Threat Level
+	 critical  XSSer found XSS vulnerabilities.
+Vulnerability Definition
+	An attacker will be able to steal cookies, deface web application or redirect to any third party address that can serve malware.
+Vulnerability Remediation
+	Input validation and Output Sanitization can completely prevent Cross Site Scripting (XSS) attacks. XSS attacks can be mitigated in future by properly following a secure coding methodology. The following comprehensive resource provides detailed information on fixing this vulnerability. https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet
+[● < 75m] Deploying 61/64 | Uniscan - Checks for LFI, RFI and RCE. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● < 30s] Deploying 62/64 | ASP.Net Misconfiguration - Checks for ASP.Net Misconfiguration. |/\|/\|/\|/\|/\|/\|[?12l[?25h...Completed in 2s
+
+[F[K[● < 35s] Deploying 63/64 | Wapiti - Checks for SQLi, RCE, XSS and Other Vulnerabilities ...Scanning Tool Unavailable. Auto-Skipping Test...
+[● <  8m] Deploying 64/64 | Nikto - Checks for HTTP Options on the Domain. ...Scanning Tool Unavailable. Auto-Skipping Test...
+[ Preliminary Scan Phase Completed. ]
+
+
+[100m[ Report Generation Phase Initiated. ]
+	Complete Vulnerability Report for isanalytics.com named `RS-Vulnerability-Report` is available under the same directory RapidScan resides.
+	Total Number of Vulnerability Checks        : 64
+	Total Number of Vulnerability Checks Skipped: 45
+	Total Number of Vulnerabilities Detected    : 13
+	Total Time Elapsed for the Scan             : 16s
+
+
+	For Debugging Purposes, You can view the complete output generated by all the tools named `RS-Debug-ScanLog` under the same directory.
+[ Report Generation Phase Completed. ]

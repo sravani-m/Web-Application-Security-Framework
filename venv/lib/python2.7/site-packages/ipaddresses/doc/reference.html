@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reference &mdash; ipaddresses 0.0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="ipaddresses 0.0.2 documentation" href="index.html" />
+    <link rel="next" title="ChangeLog" href="changelog.html" />
+    <link rel="prev" title="ipaddresses" href="readme.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="changelog.html" title="ChangeLog"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="readme.html" title="ipaddresses"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">ipaddresses 0.0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="reference">
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-cli">
+<span id="cli"></span><h2>cli<a class="headerlink" href="#module-cli" title="Permalink to this headline">¶</a></h2>
+<p>Processes command line arguments.</p>
+<dl class="function">
+<dt id="cli.print_ips">
+<code class="descclassname">cli.</code><code class="descname">print_ips</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cli.html#print_ips"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cli.print_ips" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print private and public IP.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cli.start">
+<code class="descclassname">cli.</code><code class="descname">start</code><span class="sig-paren">(</span><em>argv</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cli.html#start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cli.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print banner and process args.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-common">
+<span id="common"></span><h2>common<a class="headerlink" href="#module-common" title="Permalink to this headline">¶</a></h2>
+<p>Common use constants and functions.</p>
+<dl class="function">
+<dt id="common.banner">
+<code class="descclassname">common.</code><code class="descname">banner</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/common.html#banner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common.banner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns banner text.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="common.license_">
+<code class="descclassname">common.</code><code class="descname">license_</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/common.html#license_"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common.license_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns license text, read from a file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="common.load_data">
+<code class="descclassname">common.</code><code class="descname">load_data</code><span class="sig-paren">(</span><em>filename=u'C:\\Users\\JMatos\\MEOCloud\\Github\\ipaddresses\\ipaddresses\\data.json'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common.html#load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common.load_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load data (list).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="common.save_data">
+<code class="descclassname">common.</code><code class="descname">save_data</code><span class="sig-paren">(</span><em>data_lst</em>, <em>filename=u'C:\\Users\\JMatos\\MEOCloud\\Github\\ipaddresses\\ipaddresses\\data.json'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common.html#save_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common.save_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save data (list).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="common.sleep">
+<code class="descclassname">common.</code><code class="descname">sleep</code><span class="sig-paren">(</span><em>seconds=5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/common.html#sleep"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common.sleep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pause for specified time.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="common.usage">
+<code class="descclassname">common.</code><code class="descname">usage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/common.html#usage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common.usage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns usage text, read from a file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="common.version">
+<code class="descclassname">common.</code><code class="descname">version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/common.html#version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#common.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns version.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-gui_tk_func">
+<span id="gui-tk-func"></span><h2>gui_tk_func<a class="headerlink" href="#module-gui_tk_func" title="Permalink to this headline">¶</a></h2>
+<p>GUI using tkinter.</p>
+<dl class="function">
+<dt id="gui_tk_func.start">
+<code class="descclassname">gui_tk_func.</code><code class="descname">start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gui_tk_func.html#start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gui_tk_func.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print banner and start GUI.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ipaddresses">
+<span id="ipaddresses"></span><h2>ipaddresses<a class="headerlink" href="#module-ipaddresses" title="Permalink to this headline">¶</a></h2>
+<p>Show private and public IP addresses.</p>
+<p>If there are any command line arguments it calls the cli module.
+Otherwise the gui module.
+See usage.txt for command line usage.</p>
+<dl class="function">
+<dt id="ipaddresses.main">
+<code class="descclassname">ipaddresses.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ipaddresses.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ipaddresses.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start CLI or GUI.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-localization">
+<span id="localization"></span><h2>localization<a class="headerlink" href="#module-localization" title="Permalink to this headline">¶</a></h2>
+<p>Localization.</p>
+<dl class="function">
+<dt id="localization.sys_lang">
+<code class="descclassname">localization.</code><code class="descname">sys_lang</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/localization.html#sys_lang"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#localization.sys_lang" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get system language.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-shared">
+<span id="shared"></span><h2>shared<a class="headerlink" href="#module-shared" title="Permalink to this headline">¶</a></h2>
+<p>Shared constants and functions between CLI and GUI modules.</p>
+<dl class="function">
+<dt id="shared.get_private_ip">
+<code class="descclassname">shared.</code><code class="descname">get_private_ip</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/shared.html#get_private_ip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shared.get_private_ip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get private IP address.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="shared.get_public_ip">
+<code class="descclassname">shared.</code><code class="descname">get_public_ip</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/shared.html#get_public_ip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#shared.get_public_ip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get public IP address.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Reference</a><ul>
+<li><a class="reference internal" href="#module-cli">cli</a></li>
+<li><a class="reference internal" href="#module-common">common</a></li>
+<li><a class="reference internal" href="#module-gui_tk_func">gui_tk_func</a></li>
+<li><a class="reference internal" href="#module-ipaddresses">ipaddresses</a></li>
+<li><a class="reference internal" href="#module-localization">localization</a></li>
+<li><a class="reference internal" href="#module-shared">shared</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="readme.html"
+                        title="previous chapter">ipaddresses</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="changelog.html"
+                        title="next chapter">ChangeLog</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/reference.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2015, Joao Carlos Roseta Matos.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+      |
+      <a href="_sources/reference.txt"
+          rel="nofollow">Page source</a></li>
+    </div>
+
+    
+
+    
+  </body>
+</html>

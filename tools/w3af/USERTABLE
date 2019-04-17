@@ -1,0 +1,14 @@
+(lp0
+(dp1
+S'username'
+p2
+S'admin'
+p3
+sS'notebooks'
+p4
+(lp5
+sS'password'
+p6
+S'secret'
+p7
+sa.

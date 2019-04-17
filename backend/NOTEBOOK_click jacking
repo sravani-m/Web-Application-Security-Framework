@@ -1,0 +1,29 @@
+(dp0
+Vusername
+p1
+Vadmin
+p2
+sS'url'
+p3
+V14.143.33.152
+p4
+sS'vulnerabilities'
+p5
+(lp6
+Vclickjacking
+p7
+asVCPU_count
+p8
+I1
+sVnotebook_name
+p9
+Vclick jacking
+p10
+sS'report'
+p11
+S'\x1b[33mThe application has no protection against Click-Jacking attacks. This vulnerability was found in the request with id 20.\r'
+p12
+sVGPU_count
+p13
+I0
+s.

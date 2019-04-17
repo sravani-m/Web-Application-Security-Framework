@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>localization &mdash; ipaddresses 0.0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="ipaddresses 0.0.2 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">ipaddresses 0.0.2 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for localization</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c"># Copyright 2009-2015 Joao Carlos Roseta Matos</span>
+<span class="c">#</span>
+<span class="c"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c"># it under the terms of the GNU General Public License as published by</span>
+<span class="c"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c"># (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c"># This program is distributed in the hope that it will be useful,</span>
+<span class="c"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c"># GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c"># You should have received a copy of the GNU General Public License</span>
+<span class="c"># along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;Localization.&quot;&quot;&quot;</span>
+
+<span class="c"># Python 3 compatibility</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">,</span>
+                        <span class="n">unicode_literals</span><span class="p">)</span>
+
+<span class="c"># import io  # Python 3 compatibility</span>
+<span class="kn">import</span> <span class="nn">locale</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="c"># from builtins import input  # Python 3 compatibility</span>
+
+
+<div class="viewcode-block" id="sys_lang"><a class="viewcode-back" href="../reference.html#localization.sys_lang">[docs]</a><span class="k">def</span> <span class="nf">sys_lang</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Get system language.&quot;&quot;&quot;</span>
+    <span class="n">lang</span> <span class="o">=</span> <span class="n">locale</span><span class="o">.</span><span class="n">getdefaultlocale</span><span class="p">()</span>
+    <span class="c"># lang = &#39;EN&#39;  # only for testing</span>
+    <span class="k">if</span> <span class="s">&#39;pt_&#39;</span> <span class="ow">in</span> <span class="n">lang</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>  <span class="c"># Portuguese</span>
+        <span class="k">return</span> <span class="s">&#39;PT&#39;</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c"># English</span>
+        <span class="k">return</span> <span class="s">&#39;EN&#39;</span>
+</div>
+<span class="n">LANG</span> <span class="o">=</span> <span class="n">sys_lang</span><span class="p">()</span>
+
+<span class="n">FS_ENC</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">getfilesystemencoding</span><span class="p">()</span>
+<span class="n">INPUT_ENC</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">encoding</span>
+<span class="n">UTF_ENC</span> <span class="o">=</span> <span class="s">&#39;utf-8&#39;</span>
+
+<span class="k">if</span> <span class="n">LANG</span> <span class="o">==</span> <span class="s">&#39;PT&#39;</span><span class="p">:</span>  <span class="c"># Portuguese</span>
+    <span class="n">ABOUT</span> <span class="o">=</span> <span class="s">&#39;Sobre&#39;</span>
+    <span class="n">BANNER</span> <span class="o">=</span> <span class="s">&#39; não tem QUALQUER GARANTIA. É software livre e você está &#39;</span> <span class="o">+</span> \
+             <span class="s">&#39;autorizado a redistribui-lo dentro de certas condições.&#39;</span>
+    <span class="n">EXIT</span> <span class="o">=</span> <span class="s">&#39;Sair&#39;</span>
+    <span class="n">FILE</span> <span class="o">=</span> <span class="s">&#39;Ficheiro&#39;</span>
+    <span class="n">HELP</span> <span class="o">=</span> <span class="s">&#39;Ajuda&#39;</span>
+    <span class="n">PRESS_ANY_KEY</span> <span class="o">=</span> <span class="s">&#39;Prima qualquer tecla para continuar...&#39;</span>
+    <span class="n">PRIVATE_IP</span> <span class="o">=</span> <span class="s">&#39;IP privado: &#39;</span>
+    <span class="n">PUBLIC_IP</span> <span class="o">=</span> <span class="s">&#39;IP público: &#39;</span>
+    <span class="n">VERSION</span> <span class="o">=</span> <span class="s">&#39;Versão&#39;</span>
+    <span class="n">VERSION_WITH_SPACES</span> <span class="o">=</span> <span class="s">&#39; versão &#39;</span>
+    <span class="n">WIN_TITLE</span> <span class="o">=</span> <span class="s">&#39;Endereços IP&#39;</span>
+    <span class="n">WRONG_ARG</span> <span class="o">=</span> <span class="s">&#39;Erro: argumento incorreto &#39;</span>
+<span class="k">else</span><span class="p">:</span>  <span class="c"># English</span>
+    <span class="n">ABOUT</span> <span class="o">=</span> <span class="s">&#39;About&#39;</span>
+    <span class="n">BANNER</span> <span class="o">=</span> <span class="s">&#39; comes with ABSOLUTELY NO WARRANTY. This is free software, &#39;</span> <span class="o">+</span> \
+             <span class="s">&#39;and you are welcome to redistribute it under certain conditions.&#39;</span>
+    <span class="n">EXIT</span> <span class="o">=</span> <span class="s">&#39;Exit&#39;</span>
+    <span class="n">FILE</span> <span class="o">=</span> <span class="s">&#39;File&#39;</span>
+    <span class="n">HELP</span> <span class="o">=</span> <span class="s">&#39;Help&#39;</span>
+    <span class="n">PRESS_ANY_KEY</span> <span class="o">=</span> <span class="s">&#39;Press any key to continue...&#39;</span>
+    <span class="n">PRIVATE_IP</span> <span class="o">=</span> <span class="s">&#39;Private IP: &#39;</span>
+    <span class="n">PUBLIC_IP</span> <span class="o">=</span> <span class="s">&#39;Public IP: &#39;</span>
+    <span class="n">VERSION</span> <span class="o">=</span> <span class="s">&#39;Version&#39;</span>
+    <span class="n">VERSION_WITH_SPACES</span> <span class="o">=</span> <span class="s">&#39; version &#39;</span>
+    <span class="n">WIN_TITLE</span> <span class="o">=</span> <span class="s">&#39;IP addresses&#39;</span>
+    <span class="n">WRONG_ARG</span> <span class="o">=</span> <span class="s">&#39;Err: incorrect argument &#39;</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c"># import doctest</span>
+    <span class="c"># doctest.testmod(verbose=True)</span>
+    <span class="k">pass</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2015, Joao Carlos Roseta Matos.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

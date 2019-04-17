@@ -1,0 +1,11 @@
+
+    usage: ipaddresses [-option]
+
+    optional arguments:
+	  -g, --gui             start GUI (Graphical User Interface)
+	  -h, --help            show help message
+	  -l, --license         show license
+	  -p, --pause           pause after showing IP addresses
+	  -V, --version         show version
+
+    No arguments shows private and public IP addresses.

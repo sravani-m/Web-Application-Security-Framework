@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>gui_tk_func &mdash; ipaddresses 0.0.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="ipaddresses 0.0.2 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">ipaddresses 0.0.2 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for gui_tk_func</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c"># Copyright 2009-2015 Joao Carlos Roseta Matos</span>
+<span class="c">#</span>
+<span class="c"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c"># it under the terms of the GNU General Public License as published by</span>
+<span class="c"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c"># (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c"># This program is distributed in the hope that it will be useful,</span>
+<span class="c"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c"># GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c"># You should have received a copy of the GNU General Public License</span>
+<span class="c"># along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;GUI using tkinter.&quot;&quot;&quot;</span>
+
+<span class="c"># Python 3 compatibility</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">,</span>
+                        <span class="n">unicode_literals</span><span class="p">)</span>
+
+<span class="c"># import io  # Python 3 compatibility</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">tkinter</span> <span class="kn">as</span> <span class="nn">tk</span>
+<span class="kn">import</span> <span class="nn">tkinter.messagebox</span> <span class="kn">as</span> <span class="nn">tk_msg_box</span>
+
+<span class="c"># from builtins import input  # Python 3 compatibility</span>
+
+<span class="kn">import</span> <span class="nn">common</span>
+<span class="kn">import</span> <span class="nn">localization</span> <span class="kn">as</span> <span class="nn">lcl</span>
+<span class="kn">import</span> <span class="nn">shared</span> <span class="kn">as</span> <span class="nn">shrd</span>
+
+<span class="k">if</span> <span class="n">common</span><span class="o">.</span><span class="n">PY</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">ttk</span> <span class="kn">as</span> <span class="nn">tk_ttk</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">tkinter.ttk</span> <span class="kn">as</span> <span class="nn">tk_ttk</span>
+
+
+<div class="viewcode-block" id="start"><a class="viewcode-back" href="../reference.html#gui_tk_func.start">[docs]</a><span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Print banner and start GUI.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">exit_gui</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Exit program.&quot;&quot;&quot;</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c"># ToDo: other return codes</span>
+
+    <span class="k">def</span> <span class="nf">center</span><span class="p">(</span><span class="n">window</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Center window.&quot;&quot;&quot;</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">update_idletasks</span><span class="p">()</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">winfo_width</span><span class="p">()</span>
+        <span class="n">frm_width</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">winfo_rootx</span><span class="p">()</span> <span class="o">-</span> <span class="n">window</span><span class="o">.</span><span class="n">winfo_x</span><span class="p">()</span>
+        <span class="n">win_width</span> <span class="o">=</span> <span class="n">width</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">frm_width</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">winfo_height</span><span class="p">()</span>
+        <span class="n">titlebar_height</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">winfo_rooty</span><span class="p">()</span> <span class="o">-</span> <span class="n">window</span><span class="o">.</span><span class="n">winfo_y</span><span class="p">()</span>
+        <span class="n">win_height</span> <span class="o">=</span> <span class="n">height</span> <span class="o">+</span> <span class="n">titlebar_height</span> <span class="o">+</span> <span class="n">frm_width</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">winfo_screenwidth</span><span class="p">()</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">win_width</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">winfo_screenheight</span><span class="p">()</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">win_height</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s">&#39;{}x{}+{}+{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">window</span><span class="o">.</span><span class="n">attributes</span><span class="p">(</span><span class="s">&#39;-alpha&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">window</span><span class="o">.</span><span class="n">attributes</span><span class="p">(</span><span class="s">&#39;-alpha&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">window</span><span class="o">.</span><span class="n">deiconify</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">show_help</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Show help message.&quot;&quot;&quot;</span>
+        <span class="n">tk_msg_box</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="n">lcl</span><span class="o">.</span><span class="n">HELP</span><span class="p">,</span> <span class="n">common</span><span class="o">.</span><span class="n">usage</span><span class="p">())</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">common</span><span class="o">.</span><span class="n">banner</span><span class="p">())</span>
+
+    <span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+    <span class="n">root</span><span class="o">.</span><span class="n">withdraw</span><span class="p">()</span>
+    <span class="n">win</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+
+    <span class="c"># for exit confirmation</span>
+    <span class="n">win</span><span class="o">.</span><span class="n">protocol</span><span class="p">(</span><span class="s">&#39;WM_DELETE_WINDOW&#39;</span><span class="p">,</span> <span class="n">exit_gui</span><span class="p">)</span>
+
+    <span class="n">win</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">lcl</span><span class="o">.</span><span class="n">WIN_TITLE</span><span class="p">)</span>
+
+    <span class="c"># not resizable</span>
+    <span class="n">win</span><span class="o">.</span><span class="n">resizable</span><span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+
+    <span class="c"># resizable (limits)</span>
+    <span class="c"># win.minsize(250, 125)</span>
+    <span class="c"># win.maxsize(500, 250)</span>
+
+    <span class="c"># needed by center function?</span>
+    <span class="c"># win.attributes(&#39;-alpha&#39;, 0.0)</span>
+
+    <span class="n">win</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;F1&gt;&#39;</span><span class="p">,</span> <span class="n">show_help</span><span class="p">)</span>
+
+    <span class="c"># menu</span>
+    <span class="n">win</span><span class="o">.</span><span class="n">option_add</span><span class="p">(</span><span class="s">&#39;*tearOff&#39;</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="n">menubar</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="n">win</span><span class="p">)</span>
+    <span class="n">win</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">menu</span><span class="o">=</span><span class="n">menubar</span><span class="p">)</span>
+    <span class="n">filemenu</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="n">menubar</span><span class="p">)</span>
+    <span class="n">helpmenu</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="n">menubar</span><span class="p">)</span>
+
+    <span class="n">menubar</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">lcl</span><span class="o">.</span><span class="n">FILE</span><span class="p">,</span> <span class="n">menu</span><span class="o">=</span><span class="n">filemenu</span><span class="p">,</span> <span class="n">underline</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">menubar</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">lcl</span><span class="o">.</span><span class="n">HELP</span><span class="p">,</span> <span class="n">menu</span><span class="o">=</span><span class="n">helpmenu</span><span class="p">,</span> <span class="n">underline</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">filemenu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">lcl</span><span class="o">.</span><span class="n">EXIT</span><span class="p">,</span> <span class="n">underline</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">exit_gui</span><span class="p">)</span>
+
+    <span class="n">helpmenu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">lcl</span><span class="o">.</span><span class="n">HELP</span><span class="p">,</span> <span class="n">underline</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">show_help</span><span class="p">,</span>
+                         <span class="n">accelerator</span><span class="o">=</span><span class="s">&#39;F1&#39;</span><span class="p">)</span>
+    <span class="n">helpmenu</span><span class="o">.</span><span class="n">add_separator</span><span class="p">()</span>
+    <span class="n">helpmenu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">lcl</span><span class="o">.</span><span class="n">ABOUT</span><span class="p">,</span> <span class="n">underline</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s">&#39;disabled&#39;</span><span class="p">)</span>
+
+    <span class="c"># ToDo: log menu item</span>
+    <span class="c"># filemenu.add_separator()</span>
+    <span class="c"># check = StringVar(value=1)</span>
+    <span class="c"># filemenu.add_checkbutton(label=&#39;Log&#39;, variable=check, onvalue=1,</span>
+    <span class="c">#                          offvalue=0)</span>
+
+    <span class="n">frame</span> <span class="o">=</span> <span class="n">tk_ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s">&#39;3 3 3 3&#39;</span><span class="p">)</span>
+    <span class="n">frame</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s">&#39;WNES&#39;</span><span class="p">)</span>
+
+    <span class="c"># if the main window is resized, the frame should expand</span>
+    <span class="c"># frame.columnconfigure(0, weight=1)</span>
+    <span class="c"># frame.rowconfigure(0, weight=1)</span>
+
+    <span class="n">private_lbl</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">lcl</span><span class="o">.</span><span class="n">PRIVATE_IP</span> <span class="o">+</span> <span class="n">shrd</span><span class="o">.</span><span class="n">get_private_ip</span><span class="p">())</span>
+    <span class="n">public_lbl</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">lcl</span><span class="o">.</span><span class="n">PUBLIC_IP</span> <span class="o">+</span> <span class="n">shrd</span><span class="o">.</span><span class="n">get_public_ip</span><span class="p">())</span>
+
+    <span class="c"># 1st row</span>
+    <span class="n">tk_ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">private_lbl</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c"># 2nd row</span>
+    <span class="n">tk_ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">public_lbl</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c"># remove if windows is non resizable</span>
+    <span class="c"># tk_ttk.Sizegrip(frame).grid(column=999, row=999, sticky=(E,S))</span>
+
+    <span class="c"># padding around all widgets</span>
+    <span class="k">for</span> <span class="n">widget</span> <span class="ow">in</span> <span class="n">frame</span><span class="o">.</span><span class="n">winfo_children</span><span class="p">():</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">grid_configure</span><span class="p">(</span><span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="c"># center window</span>
+    <span class="n">center</span><span class="p">(</span><span class="n">win</span><span class="p">)</span>
+
+    <span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+
+</div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c"># import doctest</span>
+    <span class="c"># doctest.testmod(verbose=True)</span>
+    <span class="k">pass</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2009-2015, Joao Carlos Roseta Matos.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.3</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

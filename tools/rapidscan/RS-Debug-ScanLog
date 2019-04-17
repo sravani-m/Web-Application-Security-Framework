@@ -1,0 +1,208 @@
+Nmap [OpenSSL CCS Injection] - Checks only for CCS Injection.
+------------------------
+
+
+Starting Nmap 7.01 ( https://nmap.org ) at 2019-04-11 22:53 IST
+
+
+Nmap [XSS Filter Check] - Checks if XSS Protection Header is present.
+------------------------
+
+
+Starting Nmap 7.01 ( https://nmap.org ) at 2019-04-14 16:15 IST
+NSE: failed to initialize the script engine:
+/usr/bin/../share/nmap/nse_main.lua:801: 'http-security-headers' did not match a category, filename, or directory
+stack traceback:
+	[C]: in function 'error'
+	/usr/bin/../share/nmap/nse_main.lua:801: in function 'get_chosen_scripts'
+	/usr/bin/../share/nmap/nse_main.lua:1249: in main chunk
+	[C]: in ?
+
+QUITTING!
+
+
+Drupal Checker - Checks for Drupal Installation.
+------------------------
+
+HugeDomains.com:15:23--  http://isanalytics.com/user
+Resolving isanalytics.com (isanalytics.com)... 23.20.239.12
+Connecting to isanalytics.com (isanalytics.com)|23.20.239.12|:80... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://www.hugedomains.com/domain_profile.cfm?d=isanalytics&e=com [following]
+--2019-04-14 16:15:29--  https://www.hugedomains.com/domain_profile.cfm?d=isanalytics&e=com
+Resolving www.hugedomains.com (www.hugedomains.com)... 104.25.38.108, 104.25.37.108, 2606:4700:20::6819:266c, ...
+Connecting to www.hugedomains.com (www.hugedomains.com)|104.25.38.108|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 15
+Saving to: ‘temp_drp_check’
+
+     0K                                                       100% 91.5K=0s
+
+2019-04-14 16:15:29 (91.5 KB/s) - ‘temp_drp_check’ saved [15/15]
+
+
+
+Nmap - Checks for ORACLE DB
+------------------------
+
+/bin/sh: 1: nikto: not found
+
+
+Joomla Checker - Checks for Joomla Installation.
+------------------------
+
+HugeDomains.com:15:30--  http://isanalytics.com/administrator
+Resolving isanalytics.com (isanalytics.com)... 23.20.239.12
+Connecting to isanalytics.com (isanalytics.com)|23.20.239.12|:80... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://www.hugedomains.com/domain_profile.cfm?d=isanalytics&e=com [following]
+--2019-04-14 16:15:30--  https://www.hugedomains.com/domain_profile.cfm?d=isanalytics&e=com
+Resolving www.hugedomains.com (www.hugedomains.com)... 104.25.38.108, 104.25.37.108, 2606:4700:20::6819:256c, ...
+Connecting to www.hugedomains.com (www.hugedomains.com)|104.25.38.108|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 15
+Saving to: ‘temp_joom_check’
+
+     0K                                                       100%  160K=0s
+
+2019-04-14 16:15:31 (160 KB/s) - ‘temp_joom_check’ saved [15/15]
+
+
+
+Checks for ASP.net Elmah Logger
+------------------------
+
+/bin/sh: 1: nikto: not found
+
+
+Checks for ASP.net Elmah Logger
+------------------------
+
+/bin/sh: 1: nikto: not found
+
+
+Nmap [FTP] - Checks if FTP service is running.
+------------------------
+
+/bin/sh: 1: dirb: not found
+
+
+WhatWeb - Checks for X-XSS Protection Header
+------------------------
+
+/bin/sh: 1: nikto: not found
+
+
+Nmap [XSS Filter Check] - Checks if XSS Protection Header is present.
+------------------------
+
+
+Starting Nmap 7.01 ( https://nmap.org ) at 2019-04-14 19:42 IST
+NSE: failed to initialize the script engine:
+/usr/bin/../share/nmap/nse_main.lua:801: 'http-security-headers' did not match a category, filename, or directory
+stack traceback:
+	[C]: in function 'error'
+	/usr/bin/../share/nmap/nse_main.lua:801: in function 'get_chosen_scripts'
+	/usr/bin/../share/nmap/nse_main.lua:1249: in main chunk
+	[C]: in ?
+
+QUITTING!
+
+
+Nmap [XSS Filter Check] - Checks if XSS Protection Header is present.
+------------------------
+
+
+Starting Nmap 7.01 ( https://nmap.org ) at 2019-04-14 20:02 IST
+NSE: failed to initialize the script engine:
+/usr/bin/../share/nmap/nse_main.lua:801: 'http-security-headers' did not match a category, filename, or directory
+stack traceback:
+	[C]: in function 'error'
+	/usr/bin/../share/nmap/nse_main.lua:801: in function 'get_chosen_scripts'
+	/usr/bin/../share/nmap/nse_main.lua:1249: in main chunk
+	[C]: in ?
+
+QUITTING!
+
+
+Nmap - Checks for MS-SQL Server DB
+------------------------
+
+/bin/sh: 1: nikto: not found
+
+
+Nmap - Fast Scan [Only Few Port Checks]
+------------------------
+
+
+Starting Nmap 7.01 ( https://nmap.org ) at 2019-04-15 18:39 IST
+Nmap scan report for isanalytics.com (23.20.239.12)
+Host is up (0.21s latency).
+rDNS record for 23.20.239.12: ec2-23-20-239-12.compute-1.amazonaws.com
+Not shown: 98 filtered ports
+PORT     STATE SERVICE
+80/tcp   open  http
+8008/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 7.40 seconds
+
+
+Nmap - Checks for Remote Desktop Service over UDP
+------------------------
+
+/bin/sh: 1: nikto: not found
+
+
+WordPress Checker - Checks for WordPress Installation.
+------------------------
+
+HugeDomains.com:24:49--  http://isanalytics.com/wp-admin
+Resolving isanalytics.com (isanalytics.com)... 23.20.239.12
+Connecting to isanalytics.com (isanalytics.com)|23.20.239.12|:80... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://www.hugedomains.com/domain_profile.cfm?d=isanalytics&e=com [following]
+--2019-04-15 20:24:50--  https://www.hugedomains.com/domain_profile.cfm?d=isanalytics&e=com
+Resolving www.hugedomains.com (www.hugedomains.com)... 104.25.38.108, 104.25.37.108, 2606:4700:20::6819:256c, ...
+Connecting to www.hugedomains.com (www.hugedomains.com)|104.25.38.108|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 15
+Saving to: ‘temp_wp_check’
+
+     0K                                                       100% 1.53M=0s
+
+2019-04-15 20:24:50 (1.53 MB/s) - ‘temp_wp_check’ saved [15/15]
+
+
+
+Nmap - Checks for Remote Desktop Service over UDP
+------------------------
+
+/bin/sh: 1: nikto: not found
+
+
+WordPress Checker - Checks for WordPress Installation.
+------------------------
+
+--2019-04-16 04:38:13--  http://14.143.33.152/wp-admin
+Connecting to 14.143.33.152:80... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2019-04-16 04:38:13 ERROR 404: Not Found.
+
+
+
+WordPress Checker - Checks for WordPress Installation.
+------------------------
+
+--2019-04-16 05:37:46--  http://14.143.33.152/wp-admin
+Connecting to 14.143.33.152:80... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2019-04-16 05:37:46 ERROR 404: Not Found.
+
+
+
+Nmap - Checks for MS-SQL Server DB
+------------------------
+
+/bin/sh: 1: nikto: not found
+
+
