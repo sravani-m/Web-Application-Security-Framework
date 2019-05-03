@@ -89,8 +89,27 @@ class VulnerabilityScanTools:
         op1 = op.split("\n")
         n = 35
         newlist = op1[n:]
-        scan_op = "\n".join(newlist)
-        print(scan_op)
+        l = len(newlist)
+        l1 = []
+        i =0
+        while(i < l):
+            if 'Vulnerability Threat Level' in str(newlist[i]):
+                l1.append('Vulnerability Threat Level')
+                l1.append(newlist[i+1])
+                i=i+2
+            elif 'Vulnerability Definition' in str(newlist[i]):
+                l1.append('Vulnerability Definition')
+                l1.append(newlist[i+1])
+                i=i+2
+            elif 'Vulnerability Remediation' in str(newlist[i]):
+                l1.append('Vulnerability Remediation')
+                l1.append(newlist[i+1])
+                l1.append("\n\n")
+                i=i+2
+            else:
+                i=i+1
+        print(l1)
+        scan_op = "\n".join(l1)
         os.chdir(path_dir)
 
         return scan_op
