@@ -3,11 +3,10 @@ set timeout 5
 save
 back
 plugins
-infrastructure   allowed_methods
+grep form_cleartext_password
 back                
 target
+set target http://14.143.33.152/Academy
 back
 start
-
-
 exit
