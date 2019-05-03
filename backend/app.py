@@ -114,6 +114,22 @@ class VulnerabilityScanTools:
 
         return scan_op
 
+
+    def arachni_scan(self,domain):
+        print("arachni")
+        path_dir = os.getcwd()
+        os.chdir("../tools/arachni/bin")
+        output_path = os.getcwd()
+        print(os.getcwd())
+        #cmd_run = ["./arachni","http://testhtml5.vulnweb.com"]
+        #op = self.cmd_rsp(cmd_run)
+        cmd = ["./try"] #create the html files
+        op = self.cmd_rsp(cmd)
+        cmd1 = ["unzip","-o","test_scan_report.html.zip", "-d", "output"]
+        op1 = self.cmd_rsp(cmd1) #unzips
+        os.chdir(path_dir)    
+        return output_path+"/output/index.html"        
+
     def w3af_scan(self,domain,vulnerability):
     	print("w3af form security")
     	path_dir = os.getcwd()
@@ -404,23 +420,18 @@ def pick_tool():
     print("\nusername: "+username+"\n")
     
     url = vulnerabilities_dict["url"]
-    url = url.strip('\"')
+    #url = url.strip('\"')
     print("\n "+vulnerabilities_dict["url"]+"\n")
     ss = VulnerabilityScanTools()
 
     if "ssl" in vulnerabilities:
-        url = url.split('//')
-        if url[0]=='https:' or url[0]=='http:' :
-            url.pop(0)
-        url_modified = ''.join(map(str,url))
-        url_modified = url_modified.split('/')
-        url_modified_stripped = url_modified[0]
-        print(url_modified_stripped)
         return_data+=ss.sslyzer_scan(vulnerabilities_dict["url"],"full")
     elif "xss" in vulnerabilities:
-        return_data+=ss.xsser_scan("https://hack.me/")
+        return_data+=ss.xsser_scan(vulnerabilities_dict["url"])
+    elif "arachni" in vulnerabilities:
+        return_data+=ss.arachni_scan(vulnerabilities_dict["url"])
     elif "nikto" in vulnerabilities:
-        return_data+=ss.nikto_scan("www.isanalytics.com")
+        return_data+=ss.nikto_scan(vulnerabilities_dict["url"])
     elif "genscan" in vulnerabilities:
         return_data+=ss.rapidscan_scan(vulnerabilities_dict["url"])
     elif "form-security" in vulnerabilities:

@@ -1,0 +1,2 @@
+#!/bin/bash
+./arachni_reporter *.afr --reporter=html:outfile=test_scan_report.html.zip

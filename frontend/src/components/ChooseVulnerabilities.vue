@@ -113,7 +113,7 @@
               <b-form-checkbox-group id="toolOptions" name="toolOptions" v-model="vulnerabilitiesSelected">
                
                   <b-form-checkbox value="genscan">General (Rapid Scan)</b-form-checkbox><br/><br/>
-
+                  <b-form-checkbox value="arachni">General (Arachni)</b-form-checkbox><br/><br/>
 
               </b-form-checkbox-group>
 
