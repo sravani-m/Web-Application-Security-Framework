@@ -201,17 +201,15 @@
           console.log(req_json)
 
 
-          this.$http.get('http://localhost:5000/get_scan_results/'+JSON.stringify(req_json)).then((response) => {
-          
-          console.log("response",response.data['report'],typeof(response.data['report']));
-          this.$store.state.report = response.data['report'];
-          this.$router.push("/notebook/"+this.$route.params.notebook_name+"/results");
-          console.log("response");
-            
-         
-        })
+           this.$http.post('http://localhost:5000/get_scan_results', JSON.stringify(req_json), { headers: { 'Content-Type': 'application/json' } }).then((response) => {
+                    
+                      console.log("response",response.data['report'],typeof(response.data['report']));
+                      this.$store.state.report = response.data['report'];
+                      this.$router.push("/notebook/"+this.$route.params.notebook_name+"/results");
+                      console.log("response");
+                
 
-
+                  })
       }
 
     }

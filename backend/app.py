@@ -119,7 +119,23 @@ class VulnerabilityScanTools:
     	path_dir = os.getcwd()
     	os.chdir("../tools/w3af")
     	script_name = vulnerability+".w3af"
-        cmd = ["./w3af_console","-s", script_name]
+    	f = open(script_name,"r")
+    	tmp_f = open("tmp.w3af","w")
+    	url = "http://"+domain
+    	lines = f.readlines()
+    	print(lines)
+    	for index in range(len(lines)):
+    		if 'target' in lines[index]:
+    			lines.insert(index+1,"set target "+url+"\n")
+    			break
+    	
+    	print(lines)
+    	for line in lines:
+    		tmp_f.write(line)
+    		tmp_f.flush()
+
+
+        cmd = ["./w3af_console","-s", "tmp.w3af"]
         print(cmd)
         
         op = self.cmd_rsp(cmd)
@@ -371,15 +387,17 @@ def load_existing_notebook_details(notebook_details):
     return json_encoder.encode({"message": "Success", "notebook_data": dct})
 
 
-@app.route('/get_scan_results/<vulnerabilities_json>/',methods = ["GET"])
-def pick_tool(vulnerabilities_json):
+@app.route('/get_scan_results',methods = ["POST"])
+def pick_tool():
     print("here")
     status_code = -1
     status_message = 'Error'
     return_data = ""
+    vulnerabilities_json = request.json
+
     print(vulnerabilities_json)
     # vulnerabilities_dict = json_encoder.encode(vulnerabilities_json)    
-    vulnerabilities_dict = json_decoder.decode(vulnerabilities_json)
+    vulnerabilities_dict = vulnerabilities_json
     vulnerabilities = vulnerabilities_dict["vulnerabilities"]
 
     username = vulnerabilities_dict["username"]
