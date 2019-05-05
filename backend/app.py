@@ -14,7 +14,7 @@ import psutil
 from globals import ABSOLUTE_PATH, UPLOAD_FOLDER, ALLOWED_EXTENSIONS, allowed_file, PREPROC, SUPER, UNSUPER, json_decoder, json_encoder, weakdict, str_isfloat
 from usertable_handler import create_new_user_table, user_table_exists
 from notebook_handler import ACTIVE_NOTEBOOKS, create_notebook_global_table, get_notebook_data, notebook_global_table_exist, set_notebook_data
-from gsb import func, netcraft
+from gsb import func, netcraft_scan
 
 app = Flask(__name__)
 
@@ -137,7 +137,7 @@ class VulnerabilityScanTools:
 
     def netcraft(self,url):
     	print("netcraft",url)
-    	resp = netcraft()
+    	resp = netcraft_scan(url)
 
     	return resp
 
