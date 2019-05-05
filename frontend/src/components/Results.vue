@@ -15,6 +15,7 @@
                       class="mb-0">
           <!-- Prints accuracy -->
           {{scanResults}}
+         
           <br>
       
         </b-form-group>

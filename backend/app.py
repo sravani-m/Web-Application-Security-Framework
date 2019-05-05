@@ -14,6 +14,7 @@ import psutil
 from globals import ABSOLUTE_PATH, UPLOAD_FOLDER, ALLOWED_EXTENSIONS, allowed_file, PREPROC, SUPER, UNSUPER, json_decoder, json_encoder, weakdict, str_isfloat
 from usertable_handler import create_new_user_table, user_table_exists
 from notebook_handler import ACTIVE_NOTEBOOKS, create_notebook_global_table, get_notebook_data, notebook_global_table_exist, set_notebook_data
+from gsb import func, netcraft
 
 app = Flask(__name__)
 
@@ -101,6 +102,7 @@ class VulnerabilityScanTools:
     	script_name = vulnerability+".w3af"
         cmd = ["./w3af_console","-s", script_name]
         print(cmd)
+        
         op = self.cmd_rsp(cmd)
         print(op)
         op_lst = op.split("\n")
@@ -121,8 +123,24 @@ class VulnerabilityScanTools:
         os.chdir(path_dir)
 
         return op_final
-        
-        
+
+    def gsb_scan(self, url):
+    	print("Google Safe Browsing API",url)
+
+        resp = func(url)
+
+        if not resp:
+        	return "Safe URL: The website isn't phised, doesn't have malware or unwanted software."
+        else:
+        	return "Website isn't safe. Likely to be phised, or contains malware or unwanted software."
+
+
+    def netcraft(self,url):
+    	print("netcraft",url)
+    	resp = netcraft()
+
+    	return resp
+
         # parse the output for full scan and half scan
 #perl nikto.pl -config /home/sravya/Desktop/checking_install/nikto/program/nikto.conf.default -Tuning 9 -host www.isanalytics.com
 
@@ -166,9 +184,12 @@ def check_username_and_password_matches():
         # open user table and check if username and password match.
         fileObject = open("USERTABLE", "rb")
         table = pickle.load(fileObject)
-
-        if (any(username == obj['username'] and password == obj['password'] for obj in table)):
-            return json_encoder.encode({"message":"Success", "comment":"Username and password match"})
+        print(table,username,password)
+        for obj in table:
+        	if username==obj['username'] and password==obj['password']:
+        		return json_encoder.encode({"message":"Success", "comment":"Username and password match"})
+        # if (any(username == obj['username'] and password == obj['password'] for obj in table)):
+        #     return json_encoder.encode({"message":"Success", "comment":"Username and password match"})
 
         return json_encoder.encode({"message":"Success", "comment":"Username and password does not match"})
     except:
@@ -194,7 +215,7 @@ def add_user():
         obj =     {
                     "username": user['username'],
                     "password": user['password'],
-                    "created_notebooks": []
+                    "notebooks": []
                 }
         
         table.append(obj)
@@ -239,6 +260,7 @@ def get_user_notebooks(get_user_notebooks_json):
     print("table",table,get_user_notebooks_dict)
 
     for obj in table:
+    	print("here",obj)
         if (obj['username'] == get_user_notebooks_dict['username']):
             print("username match")
             return json_encoder.encode({"message":"Success", "notebook_names":obj['notebooks']})
@@ -347,7 +369,8 @@ def pick_tool(vulnerabilities_json):
     url = vulnerabilities_dict["url"]
     url = url.strip('\"')
     print("\n "+vulnerabilities_dict["url"]+"\n")
-    
+    ss = VulnerabilityScanTools()
+
     if "ssl" in vulnerabilities:
         url = url.split('//')
         if url[0]=='https:' or url[0]=='http:' :
@@ -356,35 +379,29 @@ def pick_tool(vulnerabilities_json):
         url_modified = url_modified.split('/')
         url_modified_stripped = url_modified[0]
         print(url_modified_stripped)
-        ss = VulnerabilityScanTools()
         return_data+=ss.sslyzer_scan(vulnerabilities_dict["url"],"full")
     elif "xss" in vulnerabilities:
-        ss = VulnerabilityScanTools()
         return_data+=ss.xsser_scan("https://hack.me/")
     elif "nikto" in vulnerabilities:
-        ss = VulnerabilityScanTools()
         return_data+=ss.nikto_scan("www.isanalytics.com")
     elif "genscan" in vulnerabilities:
-        ss = VulnerabilityScanTools()
         return_data+=ss.rapidscan_scan(vulnerabilities_dict["url"])
     elif "form-security" in vulnerabilities:
-    	ss = VulnerabilityScanTools()
     	return_data+=ss.w3af_scan(url,"form-security")
     elif "clickjacking" in vulnerabilities:
-    	ss = VulnerabilityScanTools()
     	return_data+=ss.w3af_scan(url,"clickjacking")
     elif "backdoor-info" in vulnerabilities:
-    	ss = VulnerabilityScanTools()
     	return_data+=ss.w3af_scan(url,"backdoor-info")
     elif "cookies" in vulnerabilities:
-    	ss = VulnerabilityScanTools()
     	return_data+=ss.w3af_scan(url,"cookies")
     elif "server-info" in vulnerabilities:
-    	ss = VulnerabilityScanTools()
     	return_data+=ss.w3af_scan(url,"server-info")
     elif "allowed-methods" in vulnerabilities:
-    	ss = VulnerabilityScanTools()
     	return_data+=ss.w3af_scan(url,"allowed-methods")
+    elif "gsb" in vulnerabilities:
+    	return_data+=ss.gsb_scan(url)
+    elif "netcraft" in vulnerabilities:
+    	return_data=str(ss.netcraft(url))
     
     print("Notebook name",vulnerabilities_dict["notebook_name"]);
     #setting notebook data
